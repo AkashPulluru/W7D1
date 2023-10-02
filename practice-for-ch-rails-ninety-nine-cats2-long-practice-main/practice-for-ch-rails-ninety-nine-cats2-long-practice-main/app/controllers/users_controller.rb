@@ -10,7 +10,8 @@ class UsersController < ApplicationController
             login(@user)
             redirect_to user_url(@user)
         else 
-            render json: @users.error.full_messages, status: 422 
+            render json: @users.error.full_messages, status: 422
+        end 
     end 
 
 
