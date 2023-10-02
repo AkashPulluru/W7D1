@@ -5,17 +5,17 @@ class SessionsController < ApplicationController
         render :new 
     end 
 
-    def create 
-        @user = User.find_by_credentials(params[:user][:username],params[:user][:password]) 
+    # def create 
+    #     @user = User.find_by_credentials(params[:user][:username],params[:user][:password]) 
 
-        if @user
-            login(@user)
-            refirect_to user_url(@user) 
-        else
-            @user = { username: params([:user][:username])}
-            render :new
-        end 
-    end 
+    #     if @user
+    #         login(@user)
+    #         redirect_to cats_url(@user) 
+    #     else
+    #         @user = { username: params([:user][:username])}
+    #         render :new
+    #     end 
+    # end 
 
     def destroy 
         logout!
