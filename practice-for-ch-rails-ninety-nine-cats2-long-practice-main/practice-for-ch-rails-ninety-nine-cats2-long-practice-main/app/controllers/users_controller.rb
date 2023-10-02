@@ -4,13 +4,19 @@ class UsersController < ApplicationController
     end 
 
     def create
-        @user = User.new(user_params)
+        # @user = User.new(user_params)
 
-        if @user.save 
-            login(@user)
-            redirect_to user_url(@user)
+        # if @user.save 
+        #     login(@user)
+        #     redirect_to user_url(@user)
+        # else 
+        #     render json: @users.error.full_messages, status: 422
+        # end 
+
+        if current_user 
+            redirect_to cats_url 
         else 
-            render json: @users.error.full_messages, status: 422
+            login!
         end 
     end 
 

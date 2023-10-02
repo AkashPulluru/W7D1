@@ -2,6 +2,16 @@
 <html>
   <head>
     <title>99 Cats</title>
+    <% if logged_in? %>
+     <h1>Welcome, <%= current_user.username %></h1>
+     <form action ="<%= session_url %>" method ="POST">
+     <input name ="_method" value ="DELETE" type ="hidden"/>
+     <input type ="submit" value ="Logout"/>
+     </form>
+     <% else %>
+     <a href="<%= new_user_url %>">Sign Up</a>
+     <a href="<%= new_session_url %>">Login</a>
+     <% end %>
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Amatic+SC:400,700" rel="stylesheet">
     <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -10,13 +20,13 @@
 
     <%= stylesheet_link_tag "application" %>
   </head>
+    <body>
+      <nav class="main-nav">
+        <h1><a href="<%= cats_url %>">99 Cats</a></h1>
+      </nav>
+      <main>
+        <%= yield %>
+      </main>
+    </body>
 
-  <body>
-    <nav class="main-nav">
-      <h1><a href="<%= cats_url %>">99 Cats</a></h1>
-    </nav>
-    <main>
-      <%= yield %>
-    </main>
-  </body>
 </html>
